@@ -78,7 +78,7 @@
     <Reference Include="Windows" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Wallpaper.cs" />
+    <Compile Include="WallpaperImage.cs" />
     <Compile Include="DesktopWallpaper.cs" />
     <Compile Include="SettingsForm.cs">
       <SubType>Form</SubType>
@@ -89,7 +89,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScreenResolution.cs" />
-    <Compile Include="UnsplashImage.cs" />
+    <Compile Include="UnsplashImageProvider.cs" />
     <EmbeddedResource Include="SettingsForm.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </EmbeddedResource>

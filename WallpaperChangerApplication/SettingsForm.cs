@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -23,14 +24,15 @@ namespace WallpaperChangerApplication
 
         private async void changeNow_Click(object sender, EventArgs e)
         {
-            UnsplashImage unsplahsImage = new UnsplashImage();
-            Image image = unsplahsImage.findRandomImage(this);
-            Wallpaper wallpaper = new Wallpaper();
+            UnsplashImageProvider unsplahsImage = new UnsplashImageProvider();
+            WebResponse webResponse = unsplahsImage.buildWebResponse(this);
+            Image image = unsplahsImage.findRandomImage(webResponse);
+            WallpaperImage wallpaper = new WallpaperImage();
             wallpaper.save(image);
-            DesktopWallpaper.changeWallpaper(Wallpaper.PATH);
+            DesktopWallpaper.changeWallpaper(WallpaperImage.PATH);
             InMemoryRandomAccessStream ras = new InMemoryRandomAccessStream();
 
-            using (Stream stream = unsplahsImage.findRandomImageStream(this))
+            using (Stream stream = unsplahsImage.findRandomImageStream(webResponse))
             {
                 await stream.CopyToAsync(ras.AsStreamForWrite());
             }

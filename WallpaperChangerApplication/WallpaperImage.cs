@@ -14,7 +14,7 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace WallpaperChangerApplication
 {
-    class Wallpaper
+    class WallpaperImage
     {
         public static string PATH = Path.Combine(Path.GetTempPath(), "wallpaper.jpg");
 
