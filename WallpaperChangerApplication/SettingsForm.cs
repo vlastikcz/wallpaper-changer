@@ -12,7 +12,7 @@ using System.Windows.Forms;
 using Windows.Storage.Streams;
 using Windows.System.UserProfile;
 
-namespace WallpaperChangerApplication
+namespace WallpaperMonsterApplication
 {
     public partial class SettingsForm : Form
     {

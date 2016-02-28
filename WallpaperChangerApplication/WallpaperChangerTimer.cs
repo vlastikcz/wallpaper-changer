@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 
-namespace WallpaperChangerApplication
+namespace WallpaperMonsterApplication
 {
     class WallpaperChangerTimer
     {

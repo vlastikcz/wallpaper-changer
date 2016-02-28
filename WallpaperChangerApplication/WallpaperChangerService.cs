@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Windows.Storage.Streams;
 using Windows.System.UserProfile;
 
-namespace WallpaperChangerApplication
+namespace WallpaperMonsterApplication
 {
     class WallpaperChangerService
     {

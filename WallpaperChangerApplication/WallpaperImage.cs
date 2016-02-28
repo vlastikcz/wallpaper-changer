@@ -12,7 +12,7 @@ using Windows.System.UserProfile;
 using System.IO.IsolatedStorage;
 using Windows.UI.Xaml.Media.Imaging;
 
-namespace WallpaperChangerApplication
+namespace WallpaperMonsterApplication
 {
     class WallpaperImage
     {

@@ -1,4 +1,4 @@
-﻿namespace WallpaperChangerApplication
+﻿namespace WallpaperMonsterApplication
 {
     partial class SettingsForm
     {
@@ -105,7 +105,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SettingsForm";
             this.RightToLeftLayout = true;
-            this.Text = "WallpaperChanger";
+            this.Text = "Wallpaper Monster";
             this.Resize += new System.EventHandler(this.Form1_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.periodSettings)).EndInit();
             this.ResumeLayout(false);
