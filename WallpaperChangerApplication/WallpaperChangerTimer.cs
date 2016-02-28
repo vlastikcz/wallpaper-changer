@@ -9,6 +9,8 @@ namespace WallpaperChangerApplication
 {
     class WallpaperChangerTimer
     {
+        private const Double MILLISECONDS_IN_A_HOUR = 3600000;
+
         private WallpaperChangerService wallpaperChangerService;
         private Timer timer;
 
@@ -20,7 +22,7 @@ namespace WallpaperChangerApplication
 
         public void ChangeTimerPeriod(Double period) {
             timer.Enabled = period > 0;
-            timer.Interval = period * 60 * 60 * 1000;
+            timer.Interval = period * MILLISECONDS_IN_A_HOUR;
         }        
 
         private void OnTimedEvent(object source, ElapsedEventArgs e)
