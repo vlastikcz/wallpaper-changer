@@ -19,6 +19,7 @@ namespace WallpaperMonsterApplication
 
         public void savePeriod(Decimal period) {
             Properties.Settings.Default.timer = period;
+            Properties.Settings.Default.Save();
         }
     }
 }
