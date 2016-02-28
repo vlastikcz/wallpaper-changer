@@ -15,7 +15,7 @@ namespace WallpaperChangerApplication
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         static extern int SystemParametersInfo(int uAction, int uParam, string lpvParam, int fuWinIni);
 
-        public static void changeWallpaper(string tempPath)
+        public static void ChangeWallpaper(string tempPath)
         {
             RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Control Panel\Desktop", true);
             key.SetValue(@"WallpaperStyle", 2.ToString());

@@ -10,8 +10,8 @@ namespace WallpaperChangerApplication
 {
     class ScreenResolution
     {
-        public static Rectangle findScreenResolution(Form myForm) {
-            return Screen.FromControl(myForm).WorkingArea;
+        public static Rectangle findScreenResolution(Form settingsForm) {
+            return Screen.FromControl(settingsForm).WorkingArea;
         }
     }
 }

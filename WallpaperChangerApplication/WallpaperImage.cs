@@ -18,7 +18,7 @@ namespace WallpaperChangerApplication
     {
         public static string PATH = Path.Combine(Path.GetTempPath(), "wallpaper.jpg");
 
-        public void save(Image image)
+        public void Save(Image image)
         {
             image.Save(PATH, System.Drawing.Imaging.ImageFormat.Jpeg);
         }

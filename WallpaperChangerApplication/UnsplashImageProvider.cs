@@ -12,26 +12,20 @@ namespace WallpaperChangerApplication
 {
     class UnsplashImageProvider
     {
-        const String URL = "https://source.unsplash.com/random/{0}x{1}";
+        private const string URL = "https://source.unsplash.com/random/{0}x{1}";
 
-        public Image findRandomImage(WebResponse webResponse)
+        public Image FindRandomImage(Stream webResponseStream)
         {
-            Image image;
-            using (var stream = findRandomImageStream(webResponse))
-            {
-                image = Image.FromStream(stream);
-            }
-            return image;
+            return Image.FromStream(webResponseStream);
         }
 
-        public Stream findRandomImageStream(WebResponse webResponse)
+        public Stream FindRandomImageStream(WebResponse webResponse)
         {
             return webResponse.GetResponseStream();
         }
 
-        public WebResponse buildWebResponse(Form form) {
-            Rectangle rectangle = ScreenResolution.findScreenResolution(form);
-            String urlWithSize = String.Format(URL, rectangle.Height, rectangle.Width);
+        public WebResponse LoadWebResponse(Rectangle dimensions) {
+            string urlWithSize = string.Format(URL, dimensions.Height, dimensions.Width);
             var request = WebRequest.Create(URL);
             return request.GetResponse();
         }

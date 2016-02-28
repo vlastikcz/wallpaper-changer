@@ -57,7 +57,7 @@
     <TargetPlatformVersion>8.1</TargetPlatformVersion>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>1456626173_ic_now_wallpaper_48px.ico</ApplicationIcon>
+    <ApplicationIcon>wallaperChanger.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -78,6 +78,9 @@
     <Reference Include="Windows" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="WallpaperChangerConfiguration.cs" />
+    <Compile Include="WallpaperChangerTimer.cs" />
+    <Compile Include="WallpaperChangerService.cs" />
     <Compile Include="WallpaperImage.cs" />
     <Compile Include="DesktopWallpaper.cs" />
     <Compile Include="SettingsForm.cs">
@@ -129,7 +132,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="1456626173_ic_now_wallpaper_48px.ico" />
+    <Content Include="wallaperChanger.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

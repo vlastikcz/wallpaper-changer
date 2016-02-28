@@ -16,31 +16,24 @@ namespace WallpaperChangerApplication
 {
     public partial class SettingsForm : Form
     {
+        private WallpaperChangerService wallpaperChangerService;
+        private WallpaperChangerTimer wallpaperChangerTimer;
+        private WallpaperChangerConfiguration wallpaperChangerConfiguration;
+
         public SettingsForm()
         {
             InitializeComponent();
-            periodSettings.Value = Properties.Settings.Default.timer;
+            wallpaperChangerService = new WallpaperChangerService(ScreenResolution.findScreenResolution(this));
+            wallpaperChangerTimer = new WallpaperChangerTimer(wallpaperChangerService);
+            wallpaperChangerConfiguration = new WallpaperChangerConfiguration();
+            periodSettings.Value = wallpaperChangerConfiguration.findPeriodDecimal();
+            wallpaperChangerTimer.ChangeTimerPeriod(wallpaperChangerConfiguration.findPeriod());
         }
 
         private async void changeNow_Click(object sender, EventArgs e)
         {
-            UnsplashImageProvider unsplahsImage = new UnsplashImageProvider();
-            WebResponse webResponse = unsplahsImage.buildWebResponse(this);
-            Image image = unsplahsImage.findRandomImage(webResponse);
-            WallpaperImage wallpaper = new WallpaperImage();
-            wallpaper.save(image);
-            DesktopWallpaper.changeWallpaper(WallpaperImage.PATH);
-            InMemoryRandomAccessStream ras = new InMemoryRandomAccessStream();
-
-            using (Stream stream = unsplahsImage.findRandomImageStream(webResponse))
-            {
-                await stream.CopyToAsync(ras.AsStreamForWrite());
-            }
-            await LockScreen.SetImageStreamAsync(ras);
+            wallpaperChangerService.DoChange();
         }
-
-
-
 
         private void Form1_Resize(object sender, EventArgs e)
         {
@@ -62,7 +55,8 @@ namespace WallpaperChangerApplication
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.timer = periodSettings.Value;
+            wallpaperChangerConfiguration.savePeriod(periodSettings.Value);
+            wallpaperChangerTimer.ChangeTimerPeriod(wallpaperChangerConfiguration.findPeriod());
         }
 
     }
