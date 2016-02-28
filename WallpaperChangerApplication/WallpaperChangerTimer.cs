@@ -22,7 +22,9 @@ namespace WallpaperChangerApplication
 
         public void ChangeTimerPeriod(Double period) {
             timer.Enabled = period > 0;
-            timer.Interval = period * MILLISECONDS_IN_A_HOUR;
+            if (timer.Enabled) { 
+                timer.Interval = period * MILLISECONDS_IN_A_HOUR;
+            }
         }        
 
         private void OnTimedEvent(object source, ElapsedEventArgs e)
