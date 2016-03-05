@@ -7,14 +7,14 @@ using System.Timers;
 
 namespace WallpaperMonsterApplication
 {
-    class WallpaperChangerTimer
+    class WallpaperMonsterTimer
     {
         private const Double MILLISECONDS_IN_A_HOUR = 3600000;
 
-        private WallpaperChangerService wallpaperChangerService;
+        private WallpaperMonsterService wallpaperChangerService;
         private Timer timer;
 
-        public WallpaperChangerTimer(WallpaperChangerService wallpaperChangerService) {
+        public WallpaperMonsterTimer(WallpaperMonsterService wallpaperChangerService) {
             this.wallpaperChangerService = wallpaperChangerService;
             timer = new Timer();
             timer.Elapsed += new ElapsedEventHandler(OnTimedEvent);

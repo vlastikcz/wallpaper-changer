@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WallpaperMonsterApplication
 {
-    class WallpaperChangerConfiguration
+    class WallpaperMonsterConfiguration
     {
         public Double findPeriod() {
             return Convert.ToDouble(findPeriodDecimal());

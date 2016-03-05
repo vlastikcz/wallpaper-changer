@@ -11,11 +11,11 @@ using Windows.System.UserProfile;
 
 namespace WallpaperMonsterApplication
 {
-    class WallpaperChangerService
+    class WallpaperMonsterService
     {
         private Rectangle dimensions;
 
-        public WallpaperChangerService(Rectangle dimensions) {
+        public WallpaperMonsterService(Rectangle dimensions) {
             this.dimensions = dimensions;
         }
 

@@ -16,16 +16,16 @@ namespace WallpaperMonsterApplication
 {
     public partial class SettingsForm : Form
     {
-        private WallpaperChangerService wallpaperChangerService;
-        private WallpaperChangerTimer wallpaperChangerTimer;
-        private WallpaperChangerConfiguration wallpaperChangerConfiguration;
+        private WallpaperMonsterService wallpaperChangerService;
+        private WallpaperMonsterTimer wallpaperChangerTimer;
+        private WallpaperMonsterConfiguration wallpaperChangerConfiguration;
 
         public SettingsForm()
         {
             InitializeComponent();
-            wallpaperChangerService = new WallpaperChangerService(ScreenResolution.findScreenResolution(this));
-            wallpaperChangerTimer = new WallpaperChangerTimer(wallpaperChangerService);
-            wallpaperChangerConfiguration = new WallpaperChangerConfiguration();
+            wallpaperChangerService = new WallpaperMonsterService(ScreenResolution.findScreenResolution(this));
+            wallpaperChangerTimer = new WallpaperMonsterTimer(wallpaperChangerService);
+            wallpaperChangerConfiguration = new WallpaperMonsterConfiguration();
             periodSettings.Value = wallpaperChangerConfiguration.findPeriodDecimal();
             wallpaperChangerTimer.ChangeTimerPeriod(wallpaperChangerConfiguration.findPeriod());
         }
