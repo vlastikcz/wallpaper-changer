@@ -14,28 +14,45 @@ namespace WallpaperMonsterApplication
     class WallpaperMonsterService
     {
         private Rectangle dimensions;
+        private WallpaperMonsterConfiguration wallpaperMonsterConfiguration;
 
-        public WallpaperMonsterService(Rectangle dimensions) {
+        public WallpaperMonsterService(WallpaperMonsterConfiguration wallpaperMonsterConfiguration, Rectangle dimensions) {
             this.dimensions = dimensions;
+            this.wallpaperMonsterConfiguration = wallpaperMonsterConfiguration;
         }
 
         public async void DoChange() {
             UnsplashImageProvider unsplahsImage = new UnsplashImageProvider();
             WebResponse webResponse = unsplahsImage.LoadWebResponse(dimensions);
-            InMemoryRandomAccessStream ras = new InMemoryRandomAccessStream();
+            InMemoryRandomAccessStream randomAccessStream = new InMemoryRandomAccessStream();
             using (Stream stream = unsplahsImage.FindRandomImageStream(webResponse))
             {
                 Stream memoryStream = new MemoryStream();
                 await stream.CopyToAsync(memoryStream);
                 memoryStream.Position = 0;
-                await memoryStream.CopyToAsync(ras.AsStreamForWrite());
+                await memoryStream.CopyToAsync(randomAccessStream.AsStreamForWrite());
                 memoryStream.Position = 0;
-                Image image = unsplahsImage.FindRandomImage(memoryStream);
-                WallpaperImage wallpaper = new WallpaperImage();
-                wallpaper.Save(image);
+                if (wallpaperMonsterConfiguration.FindShouldChangeWallpaper()) {
+                    ChangeWallpaper(unsplahsImage, memoryStream);
+                }
             }
-            DesktopWallpaper.ChangeWallpaper(WallpaperImage.PATH);
-            await LockScreen.SetImageStreamAsync(ras);
+
+            if (wallpaperMonsterConfiguration.FindShouldChangeLockScreen()) {
+                ChangeLockScreen(randomAccessStream);
+            }
         }
+
+        private void ChangeWallpaper(UnsplashImageProvider unsplahsImage, Stream imageStream) {
+            Image image = unsplahsImage.FindRandomImage(imageStream);
+            WallpaperImage wallpaper = new WallpaperImage();
+            wallpaper.Save(image);
+            DesktopWallpaper.ChangeWallpaper(WallpaperImage.PATH);
+        }
+
+        public async void ChangeLockScreen(InMemoryRandomAccessStream randomAccessStream)
+        {
+            await LockScreen.SetImageStreamAsync(randomAccessStream);
+        }
+
     }
 }

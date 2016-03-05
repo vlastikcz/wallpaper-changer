@@ -23,11 +23,13 @@ namespace WallpaperMonsterApplication
         public SettingsForm()
         {
             InitializeComponent();
-            wallpaperChangerService = new WallpaperMonsterService(ScreenResolution.findScreenResolution(this));
-            wallpaperChangerTimer = new WallpaperMonsterTimer(wallpaperChangerService);
             wallpaperChangerConfiguration = new WallpaperMonsterConfiguration();
-            periodSettings.Value = wallpaperChangerConfiguration.findPeriodDecimal();
-            wallpaperChangerTimer.ChangeTimerPeriod(wallpaperChangerConfiguration.findPeriod());
+            wallpaperChangerService = new WallpaperMonsterService(wallpaperChangerConfiguration, ScreenResolution.findScreenResolution(this));
+            wallpaperChangerTimer = new WallpaperMonsterTimer(wallpaperChangerService);
+            periodSettings.Value = wallpaperChangerConfiguration.FindPeriodDecimal();
+            wallpaperCheckBox.Checked = wallpaperChangerConfiguration.FindShouldChangeWallpaper();
+            lockScreenCheckBox.Checked = wallpaperChangerConfiguration.FindShouldChangeLockScreen();
+            wallpaperChangerTimer.ChangeTimerPeriod(wallpaperChangerConfiguration.FindPeriod());
         }
 
         private async void changeNow_Click(object sender, EventArgs e)
@@ -55,9 +57,21 @@ namespace WallpaperMonsterApplication
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            wallpaperChangerConfiguration.savePeriod(periodSettings.Value);
-            wallpaperChangerTimer.ChangeTimerPeriod(wallpaperChangerConfiguration.findPeriod());
+            wallpaperChangerConfiguration.ChangePeriod(periodSettings.Value);
+            wallpaperChangerConfiguration.Save();
+            wallpaperChangerTimer.ChangeTimerPeriod(wallpaperChangerConfiguration.FindPeriod());
         }
 
+        private void wallpaperCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            wallpaperChangerConfiguration.ChangeWallpaper(wallpaperCheckBox.Checked);
+            wallpaperChangerConfiguration.Save();
+        }
+
+        private void lockScreenCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            wallpaperChangerConfiguration.ChangeLockScreen(lockScreenCheckBox.Checked);
+            wallpaperChangerConfiguration.Save();
+        }
     }
 }

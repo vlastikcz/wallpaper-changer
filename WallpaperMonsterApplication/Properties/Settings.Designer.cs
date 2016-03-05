@@ -34,5 +34,29 @@ namespace WallpaperMonsterApplication.Properties {
                 this["timer"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool changeWallpaper {
+            get {
+                return ((bool)(this["changeWallpaper"]));
+            }
+            set {
+                this["changeWallpaper"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool changeLockScreen {
+            get {
+                return ((bool)(this["changeLockScreen"]));
+            }
+            set {
+                this["changeLockScreen"] = value;
+            }
+        }
     }
 }
