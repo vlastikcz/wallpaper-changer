@@ -37,15 +37,17 @@
             this.periodSettingsAfter = new System.Windows.Forms.Label();
             this.saveButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.wallpaperCheckBox = new System.Windows.Forms.CheckBox();
             this.lockScreenCheckBox = new System.Windows.Forms.CheckBox();
+            this.wallpaperCheckBox = new System.Windows.Forms.CheckBox();
+            this.categoryLabel = new System.Windows.Forms.Label();
+            this.categoryComboBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.periodSettings)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // chnageNow
             // 
-            this.chnageNow.Location = new System.Drawing.Point(82, 163);
+            this.chnageNow.Location = new System.Drawing.Point(59, 163);
             this.chnageNow.Name = "chnageNow";
             this.chnageNow.Size = new System.Drawing.Size(75, 23);
             this.chnageNow.TabIndex = 0;
@@ -62,7 +64,7 @@
             // 
             // periodSettings
             // 
-            this.periodSettings.Location = new System.Drawing.Point(119, 7);
+            this.periodSettings.Location = new System.Drawing.Point(119, 12);
             this.periodSettings.Name = "periodSettings";
             this.periodSettings.Size = new System.Drawing.Size(57, 20);
             this.periodSettings.TabIndex = 2;
@@ -70,7 +72,7 @@
             // periodSettingsBefore
             // 
             this.periodSettingsBefore.AutoSize = true;
-            this.periodSettingsBefore.Location = new System.Drawing.Point(9, 9);
+            this.periodSettingsBefore.Location = new System.Drawing.Point(12, 14);
             this.periodSettingsBefore.Name = "periodSettingsBefore";
             this.periodSettingsBefore.Size = new System.Drawing.Size(104, 13);
             this.periodSettingsBefore.TabIndex = 3;
@@ -79,7 +81,7 @@
             // periodSettingsAfter
             // 
             this.periodSettingsAfter.AutoSize = true;
-            this.periodSettingsAfter.Location = new System.Drawing.Point(182, 9);
+            this.periodSettingsAfter.Location = new System.Drawing.Point(182, 14);
             this.periodSettingsAfter.Name = "periodSettingsAfter";
             this.periodSettingsAfter.Size = new System.Drawing.Size(33, 13);
             this.periodSettingsAfter.TabIndex = 4;
@@ -87,7 +89,7 @@
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(163, 163);
+            this.saveButton.Location = new System.Drawing.Point(140, 163);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
             this.saveButton.TabIndex = 5;
@@ -101,21 +103,10 @@
             this.groupBox1.Controls.Add(this.wallpaperCheckBox);
             this.groupBox1.Location = new System.Drawing.Point(15, 113);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(223, 44);
+            this.groupBox1.Size = new System.Drawing.Size(200, 44);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Apply to";
-            // 
-            // wallpaperCheckBox
-            // 
-            this.wallpaperCheckBox.AutoSize = true;
-            this.wallpaperCheckBox.Location = new System.Drawing.Point(24, 19);
-            this.wallpaperCheckBox.Name = "wallpaperCheckBox";
-            this.wallpaperCheckBox.Size = new System.Drawing.Size(74, 17);
-            this.wallpaperCheckBox.TabIndex = 0;
-            this.wallpaperCheckBox.Text = "Wallpaper";
-            this.wallpaperCheckBox.UseVisualStyleBackColor = true;
-            this.wallpaperCheckBox.CheckedChanged += new System.EventHandler(this.wallpaperCheckBox_CheckedChanged);
             // 
             // lockScreenCheckBox
             // 
@@ -126,13 +117,41 @@
             this.lockScreenCheckBox.TabIndex = 1;
             this.lockScreenCheckBox.Text = "Lock screen";
             this.lockScreenCheckBox.UseVisualStyleBackColor = true;
-            this.lockScreenCheckBox.CheckedChanged += new System.EventHandler(this.lockScreenCheckBox_CheckedChanged);
+            // 
+            // wallpaperCheckBox
+            // 
+            this.wallpaperCheckBox.AutoSize = true;
+            this.wallpaperCheckBox.Location = new System.Drawing.Point(24, 19);
+            this.wallpaperCheckBox.Name = "wallpaperCheckBox";
+            this.wallpaperCheckBox.Size = new System.Drawing.Size(74, 17);
+            this.wallpaperCheckBox.TabIndex = 0;
+            this.wallpaperCheckBox.Text = "Wallpaper";
+            this.wallpaperCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // categoryLabel
+            // 
+            this.categoryLabel.AutoSize = true;
+            this.categoryLabel.Location = new System.Drawing.Point(12, 46);
+            this.categoryLabel.Name = "categoryLabel";
+            this.categoryLabel.Size = new System.Drawing.Size(80, 13);
+            this.categoryLabel.TabIndex = 7;
+            this.categoryLabel.Text = "Image category";
+            // 
+            // categoryComboBox
+            // 
+            this.categoryComboBox.FormattingEnabled = true;
+            this.categoryComboBox.Location = new System.Drawing.Point(98, 43);
+            this.categoryComboBox.Name = "categoryComboBox";
+            this.categoryComboBox.Size = new System.Drawing.Size(117, 21);
+            this.categoryComboBox.TabIndex = 8;
             // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(250, 198);
+            this.ClientSize = new System.Drawing.Size(233, 198);
+            this.Controls.Add(this.categoryComboBox);
+            this.Controls.Add(this.categoryLabel);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.periodSettingsAfter);
@@ -164,6 +183,8 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox lockScreenCheckBox;
         private System.Windows.Forms.CheckBox wallpaperCheckBox;
+        private System.Windows.Forms.Label categoryLabel;
+        private System.Windows.Forms.ComboBox categoryComboBox;
     }
 }
 

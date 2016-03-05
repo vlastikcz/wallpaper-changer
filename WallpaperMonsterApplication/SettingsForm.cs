@@ -16,32 +16,37 @@ namespace WallpaperMonsterApplication
 {
     public partial class SettingsForm : Form
     {
-        private WallpaperMonsterService wallpaperChangerService;
-        private WallpaperMonsterTimer wallpaperChangerTimer;
-        private WallpaperMonsterConfiguration wallpaperChangerConfiguration;
+        private WallpaperMonsterService wallpaperMonsterService;
+        private WallpaperMonsterTimer wallpaperMonsterTimer;
+        private WallpaperMonsterConfiguration wallpaperMonsterConfiguration;
 
         public SettingsForm()
         {
             InitializeComponent();
-            wallpaperChangerConfiguration = new WallpaperMonsterConfiguration();
-            wallpaperChangerService = new WallpaperMonsterService(wallpaperChangerConfiguration, ScreenResolution.findScreenResolution(this));
-            wallpaperChangerTimer = new WallpaperMonsterTimer(wallpaperChangerService);
-            periodSettings.Value = wallpaperChangerConfiguration.FindPeriodDecimal();
-            wallpaperCheckBox.Checked = wallpaperChangerConfiguration.FindShouldChangeWallpaper();
-            lockScreenCheckBox.Checked = wallpaperChangerConfiguration.FindShouldChangeLockScreen();
-            wallpaperChangerTimer.ChangeTimerPeriod(wallpaperChangerConfiguration.FindPeriod());
+            wallpaperMonsterConfiguration = new WallpaperMonsterConfiguration();
+            wallpaperMonsterService = new WallpaperMonsterService(wallpaperMonsterConfiguration, ScreenResolution.findScreenResolution(this));
+            wallpaperMonsterTimer = new WallpaperMonsterTimer(wallpaperMonsterService);
+            periodSettings.Value = wallpaperMonsterConfiguration.FindPeriodDecimal();
+            wallpaperCheckBox.Checked = wallpaperMonsterConfiguration.FindShouldChangeWallpaper();
+            lockScreenCheckBox.Checked = wallpaperMonsterConfiguration.FindShouldChangeLockScreen();
+            wallpaperMonsterTimer.ChangeTimerPeriod(wallpaperMonsterConfiguration.FindPeriod());
+            prepareCategoryCombobox();
+        }
+
+        private void prepareCategoryCombobox() {
+            categoryComboBox.DataSource = new BindingSource(UnsplashImageProvider.categories, null);
+            categoryComboBox.DisplayMember = "Key";
+            categoryComboBox.ValueMember = "Value";
+            categoryComboBox.SelectedValue = wallpaperMonsterConfiguration.FindCategory();
         }
 
         private async void changeNow_Click(object sender, EventArgs e)
         {
-            wallpaperChangerService.DoChange();
+            wallpaperMonsterService.DoChange();
         }
 
         private void Form1_Resize(object sender, EventArgs e)
         {
-            //if the form is minimized  
-            //hide it from the task bar  
-            //and show the system tray icon (represented by the NotifyIcon control)  
             if (this.WindowState == FormWindowState.Minimized)
             {
                 Hide();
@@ -49,7 +54,7 @@ namespace WallpaperMonsterApplication
         }
 
  
-    private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             Show();
             this.WindowState = FormWindowState.Normal;
@@ -57,21 +62,12 @@ namespace WallpaperMonsterApplication
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            wallpaperChangerConfiguration.ChangePeriod(periodSettings.Value);
-            wallpaperChangerConfiguration.Save();
-            wallpaperChangerTimer.ChangeTimerPeriod(wallpaperChangerConfiguration.FindPeriod());
-        }
-
-        private void wallpaperCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            wallpaperChangerConfiguration.ChangeWallpaper(wallpaperCheckBox.Checked);
-            wallpaperChangerConfiguration.Save();
-        }
-
-        private void lockScreenCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            wallpaperChangerConfiguration.ChangeLockScreen(lockScreenCheckBox.Checked);
-            wallpaperChangerConfiguration.Save();
+            wallpaperMonsterConfiguration.ChangePeriod(periodSettings.Value);
+            wallpaperMonsterConfiguration.ChangeCategory(Convert.ToString(categoryComboBox.SelectedValue));
+            wallpaperMonsterConfiguration.ChangeLockScreen(lockScreenCheckBox.Checked);
+            wallpaperMonsterConfiguration.ChangeWallpaper(wallpaperCheckBox.Checked);
+            wallpaperMonsterConfiguration.Save();
+            wallpaperMonsterTimer.ChangeTimerPeriod(wallpaperMonsterConfiguration.FindPeriod());
         }
     }
 }

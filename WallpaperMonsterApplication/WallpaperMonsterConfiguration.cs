@@ -26,6 +26,11 @@ namespace WallpaperMonsterApplication
             return Properties.Settings.Default.changeLockScreen;
         }
 
+        public string FindCategory()
+        {
+            return Properties.Settings.Default.category;
+        }
+
         public void ChangePeriod(Decimal period) {
             Properties.Settings.Default.timer = period;
         }
@@ -33,6 +38,11 @@ namespace WallpaperMonsterApplication
         public void ChangeWallpaper(Boolean changeWallpaper)
         {
             Properties.Settings.Default.changeWallpaper = changeWallpaper;
+        }
+
+        public void ChangeCategory(string category)
+        {
+            Properties.Settings.Default.category = category;
         }
 
         public void ChangeLockScreen(Boolean changeLockScreen)
@@ -43,5 +53,6 @@ namespace WallpaperMonsterApplication
         public void Save() { 
             Properties.Settings.Default.Save();
         }
+
     }
 }

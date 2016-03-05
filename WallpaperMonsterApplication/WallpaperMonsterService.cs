@@ -22,7 +22,7 @@ namespace WallpaperMonsterApplication
         }
 
         public async void DoChange() {
-            UnsplashImageProvider unsplahsImage = new UnsplashImageProvider();
+            UnsplashImageProvider unsplahsImage = new UnsplashImageProvider(wallpaperMonsterConfiguration);
             WebResponse webResponse = unsplahsImage.LoadWebResponse(dimensions);
             InMemoryRandomAccessStream randomAccessStream = new InMemoryRandomAccessStream();
             using (Stream stream = unsplahsImage.FindRandomImageStream(webResponse))

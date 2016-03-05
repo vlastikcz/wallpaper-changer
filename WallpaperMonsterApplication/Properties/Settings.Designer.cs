@@ -58,5 +58,17 @@ namespace WallpaperMonsterApplication.Properties {
                 this["changeLockScreen"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("random")]
+        public string category {
+            get {
+                return ((string)(this["category"]));
+            }
+            set {
+                this["category"] = value;
+            }
+        }
     }
 }
