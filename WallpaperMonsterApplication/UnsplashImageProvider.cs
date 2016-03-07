@@ -44,7 +44,7 @@ namespace WallpaperMonsterApplication
 
         public WebResponse LoadWebResponse(Rectangle dimensions) {
             string urlWithSize = string.Format(URL, wallpaperMonsterConfiguration.FindCategory(), dimensions.Height, dimensions.Width);
-            var request = WebRequest.Create(URL);
+            var request = WebRequest.Create(urlWithSize);
             return request.GetResponse();
         }
 
